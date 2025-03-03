@@ -1,6 +1,6 @@
 import logging
 import json
-from telegram import Bot, ParseMode, Update
+from telegram import Bot, ParseMode, Update, Poll
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, ConversationHandler
 
 # Enable logging
@@ -12,7 +12,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Define your bot token
-BOT_TOKEN = "7882173382:AAGtuO4Q7qk54Vr6V16yu2bQsrPHzxRpnC8"
+BOT_TOKEN = '7882173382:AAGtuO4Q7qk54Vr6V16yu2bQsrPHzxRpnC8'
 
 # Define the states for the conversation handler
 ASK_CHANNEL, ASK_INTERVAL = range(2)
@@ -59,9 +59,14 @@ def send_quiz(context: CallbackContext):
     quiz = quizzes.pop(0)
     quizzes.append(quiz)
     question, options, correct_option = quiz
-    options_text = "\n".join([f"{i + 1}. {opt}" for i, opt in enumerate(options)])
-    message = f"**Quiz Time!**\n\n**{question}**\n{options_text}"
-    context.bot.send_message(chat_id=channel_id, text=message, parse_mode=ParseMode.MARKDOWN)
+    context.bot.send_poll(
+        chat_id=channel_id,
+        question=question,
+        options=options,
+        type=Poll.QUIZ,
+        correct_option_id=correct_option,
+        is_anonymous=False
+    )
 
 def main():
     # Load user settings from file
