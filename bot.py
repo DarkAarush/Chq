@@ -1,7 +1,7 @@
 import telebot
 
-TOKEN = "YOUR_BOT_TOKEN"
-CHANNEL_ID = "@your_channel_username"
+TOKEN = "5647751734:AAGf0uUjBf1C7NyqOeeMf1UXy4tQfXAZwro"
+CHANNEL_ID = "@sscupscquizstore"
 
 bot = telebot.TeleBot(TOKEN)
 
