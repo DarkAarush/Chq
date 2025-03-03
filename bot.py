@@ -65,7 +65,7 @@ def send_quiz(context: CallbackContext):
         options=options,
         type=Poll.QUIZ,
         correct_option_id=correct_option,
-        is_anonymous=False
+        # is_anonymous=False
     )
 
 def main():
