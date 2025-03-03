@@ -12,7 +12,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Define your bot token
-BOT_TOKEN = '5647751734:AAGf0uUjBf1C7NyqOeeMf1UXy4tQfXAZwro'
+BOT_TOKEN = "7882173382:AAGtuO4Q7qk54Vr6V16yu2bQsrPHzxRpnC8"
 
 # Define the states for the conversation handler
 ASK_CHANNEL, ASK_INTERVAL = range(2)
