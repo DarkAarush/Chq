@@ -65,7 +65,7 @@ def send_quiz(context: CallbackContext):
         options=options,
         type=Poll.QUIZ,
         correct_option_id=correct_option,
-        # is_anonymous=true
+        is_anonymous=False
     )
 
 def main():
@@ -91,8 +91,15 @@ def main():
 
     dp.add_handler(conv_handler)
 
-    updater.start_polling()
-    updater.idle()
+    try:
+        updater.start_polling()
+        updater.idle()
+    except NetworkError as ne:
+        logger.error(f"NetworkError occurred: {ne}")
+    except InvalidToken as it:
+        logger.error(f"InvalidToken error: {it}")
+    except TelegramError as te:
+        logger.error(f"TelegramError occurred: {te}")
 
 if __name__ == '__main__':
     main()
